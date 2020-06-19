@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import Grid from '../components/Grid';
 import Container from '@material-ui/core/Container';
@@ -12,6 +12,16 @@ import {
   FormControl,
   Button,
 } from '@material-ui/core';
+
+import {
+  blank,
+  blinkers,
+  toads,
+  beacons,
+  penta,
+  pulsar,
+  space,
+} from '../prefabs/index';
 
 const useStyles = makeStyles((theme) => ({
   gameBody: {
@@ -32,11 +42,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//keep track of extra boxes outside of display
+const additional = 2;
 const makeArray = (size) => {
-  return Array(size)
+  return Array(size + additional * 2)
     .fill()
     .map(() => {
-      return Array(size).fill(false);
+      return Array(size + additional * 2).fill(false);
     });
 };
 
@@ -47,14 +59,14 @@ const Game = (props) => {
   const gridSize = 25;
   const [active, setActive] = useState(makeArray(gridSize));
   const [prefab, setPrefab] = useState('');
-  const [speed, setSpeed] = useState('1');
+  const [speed, setSpeed] = useState(1);
   const [playStatus, setPlayStatus] = useState('Start');
 
   //update function for grid component
   const update = (x, y) => {
     const newArray = [...active].map((row, index) => {
       if (index === y) {
-        row.splice(x, 1, true);
+        row.splice(x, 1, !active[y][x]);
       }
       return row;
     });
@@ -66,23 +78,75 @@ const Game = (props) => {
     setPrefab(e.target.value);
   };
 
+  useEffect(() => {
+    //blank option
+    if (prefab === 'blank')
+      setActive(
+        blank.map((row) => {
+          return [...row];
+        })
+      );
+    //blinkers option
+    else if (prefab === 'blinkers')
+      setActive(
+        blinkers.map((row) => {
+          return [...row];
+        })
+      );
+    //toads option
+    else if (prefab === 'toads')
+      setActive(
+        toads.map((row) => {
+          return [...row];
+        })
+      );
+    //beacons option
+    else if (prefab === 'beacons')
+      setActive(
+        beacons.map((row) => {
+          return [...row];
+        })
+      );
+    //penta option
+    else if (prefab === 'penta')
+      setActive(
+        penta.map((row) => {
+          return [...row];
+        })
+      );
+    //pulsar option
+    else if (prefab === 'pulsar')
+      setActive(
+        pulsar.map((row) => {
+          return [...row];
+        })
+      );
+    //space option
+    else if (prefab === 'space')
+      setActive(
+        space.map((row) => {
+          return [...row];
+        })
+      );
+  }, [prefab]);
+
   const handlePlayButton = (e) => {
     playStatus === 'Start' ? setPlayStatus('Stop') : setPlayStatus('Start');
   };
 
   const speedUp = () => {
-    if (parseInt(speed) <= 64) setSpeed((parseInt(speed) * 2).toString());
+    if (speed <= 64) setSpeed(speed * 2);
   };
 
   const speedDown = () => {
-    if (parseInt(speed) > 1) setSpeed((parseInt(speed) / 2).toString());
+    if (speed > 1) setSpeed(speed / 2);
   };
 
   return (
     <div>
       <NavBar />
       <Container className={classes.gameBody} maxWidth='lg'>
-        <Grid active={active} update={update} />
+        <Grid active={active} update={update} additional={additional} />
         <div className={classes.gameControls}>
           <FormControl className={classes.formControl}>
             <InputLabel id='prefab-selection'>Choose a Pattern</InputLabel>
@@ -92,7 +156,12 @@ const Game = (props) => {
               onChange={updateToPrefab}
             >
               <MenuItem value='blank'>Blank</MenuItem>
-              <MenuItem value='other'>Other -- Testing</MenuItem>
+              <MenuItem value='blinkers'>Blinkers</MenuItem>
+              <MenuItem value='toads'>Toads</MenuItem>
+              <MenuItem value='beacons'>Beacons</MenuItem>
+              <MenuItem value='pulsar'>Pulsar</MenuItem>
+              <MenuItem value='penta'>Pentadecathlon</MenuItem>
+              <MenuItem value='space'>Spaceships</MenuItem>
             </Select>
           </FormControl>
           <div className={classes.gameSetting}>

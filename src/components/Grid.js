@@ -4,7 +4,13 @@ import Row from './Row';
 const Grid = (props) => {
   const grid = props.active.map((active, index) => {
     return (
-      <Row key={index} active={active} index={index} update={props.update} />
+      <Row
+        key={index}
+        active={active}
+        index={index}
+        update={props.update}
+        additional={props.additional}
+      />
     );
   });
   return <div className='grid'>{grid}</div>;
