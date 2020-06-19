@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import NavBar from '../components/NavBar';
 import Grid from '../components/Grid';
 import Container from '@material-ui/core/Container';
@@ -131,7 +131,6 @@ const Game = (props) => {
   }, [prefab]);
 
   const handlePlayButton = (e) => {
-    getStep();
     playStatus === 'Start' ? setPlayStatus('Stop') : setPlayStatus('Start');
   };
 
@@ -152,10 +151,32 @@ const Game = (props) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data['active']);
         setActive(data['active']);
       });
   };
+
+  function useInterval(callback, delay) {
+    const savedCallback = useRef();
+
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+
+    useEffect(() => {
+      function tick() {
+        savedCallback.current();
+      }
+      if (delay !== null) {
+        let id = setInterval(tick, delay);
+        return () => clearInterval(id);
+      }
+    }, [delay]);
+  }
+
+  //make call to the server at each interval
+  useInterval(() => {
+    if (playStatus === 'Stop') getStep();
+  }, 1000 / speed);
 
   return (
     <div>
