@@ -131,6 +131,7 @@ const Game = (props) => {
   }, [prefab]);
 
   const handlePlayButton = (e) => {
+    getStep();
     playStatus === 'Start' ? setPlayStatus('Stop') : setPlayStatus('Start');
   };
 
@@ -140,6 +141,20 @@ const Game = (props) => {
 
   const speedDown = () => {
     if (speed > 1) setSpeed(speed / 2);
+  };
+
+  const getStep = () => {
+    fetch('/step', {
+      method: 'POST',
+      cache: 'no-cache',
+      headers: { content_type: 'application/json' },
+      body: JSON.stringify({ active: active }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data['active']);
+        setActive(data['active']);
+      });
   };
 
   return (
