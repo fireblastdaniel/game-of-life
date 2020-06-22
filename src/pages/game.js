@@ -224,6 +224,13 @@ const Game = (props) => {
           >
             {playStatus}
           </Button>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={() => setPrefab('blank')}
+          >
+            Clear Grid
+          </Button>
         </div>
       </Container>
     </div>
