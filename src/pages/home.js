@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import { makeStyles } from '@material-ui/core';
+import Footer from '../components/Footer';
 
 const useStyles = makeStyles({
   container: {
@@ -61,6 +62,7 @@ const Home = (props) => {
           </Button>
         </Link>
       </div>
+      <Footer />
     </div>
   );
 };

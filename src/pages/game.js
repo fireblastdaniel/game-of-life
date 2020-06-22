@@ -27,6 +27,7 @@ import {
 
 import step from '../utils/step';
 import randomize from '../utils/randomize';
+import Footer from '../components/Footer';
 
 const useStyles = makeStyles((theme) => ({
   gameBody: {
@@ -135,9 +136,12 @@ const Game = (props) => {
         })
       );
     //random settings
-    else if (prefab === 'randomS') setActive(randomize(30, gridSize));
-    else if (prefab === 'randomM') setActive(randomize(50, gridSize));
-    else if (prefab === 'randomL') setActive(randomize(70, gridSize));
+    else if (prefab === 'randomS')
+      setActive(randomize(30, gridSize + 2 * additional));
+    else if (prefab === 'randomM')
+      setActive(randomize(50, gridSize + 2 * additional));
+    else if (prefab === 'randomL')
+      setActive(randomize(70, gridSize + 2 * additional));
     setGeneration(0);
   }, [prefab]);
 
@@ -239,6 +243,8 @@ const Game = (props) => {
           </Button>
         </div>
       </Container>
+
+      <Footer />
     </div>
   );
 };
