@@ -19,7 +19,11 @@ const Row = (props) => {
             width: '20px',
             margin: '2px',
           }}
-          onClick={() => props.update(index, props.index)}
+          onClick={
+            props.clickable === 'Start'
+              ? () => props.update(index, props.index)
+              : null
+          }
         />
       );
     else return null;

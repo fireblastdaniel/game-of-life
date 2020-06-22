@@ -10,6 +10,7 @@ const Grid = (props) => {
         index={index}
         update={props.update}
         additional={props.additional}
+        clickable={props.clickable}
       />
     );
   });

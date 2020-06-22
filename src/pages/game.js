@@ -175,7 +175,12 @@ const Game = (props) => {
     <div>
       <NavBar />
       <Container className={classes.gameBody} maxWidth='lg'>
-        <Grid active={active} update={update} additional={additional} />
+        <Grid
+          active={active}
+          update={update}
+          additional={additional}
+          clickable={playStatus}
+        />
         <div className={classes.gameControls}>
           <FormControl className={classes.formControl}>
             <InputLabel id='prefab-selection'>Choose a Pattern</InputLabel>
