@@ -23,6 +23,8 @@ import {
   space,
 } from '../prefabs/index';
 
+import step from '../utils/step';
+
 const useStyles = makeStyles((theme) => ({
   gameBody: {
     maxWidth: 'lg',
@@ -143,16 +145,7 @@ const Game = (props) => {
   };
 
   const getStep = () => {
-    fetch('/step', {
-      method: 'POST',
-      cache: 'no-cache',
-      headers: { content_type: 'application/json' },
-      body: JSON.stringify({ active: active }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setActive(data['active']);
-      });
+    setActive(step(active));
   };
 
   function useInterval(callback, delay) {
