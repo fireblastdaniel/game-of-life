@@ -4,6 +4,7 @@ import Grid from '../components/Grid';
 import Container from '@material-ui/core/Container';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import {
   makeStyles,
   Select,
@@ -224,10 +225,15 @@ const Game = (props) => {
           >
             {playStatus}
           </Button>
+          <Button variant='contained' color='primary' onClick={getStep}>
+            Step Forward
+            <PlayArrowIcon />
+          </Button>
           <Button
             variant='contained'
             color='primary'
             onClick={() => setPrefab('blank')}
+            className={classes.gameSetting}
           >
             Clear Grid
           </Button>
