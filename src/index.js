@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
     <Router basename={process.env.PUBLIC_URL}>
+      {console.log(process.env.PUBLIC_URL)}
       <App />
     </Router>
   </React.StrictMode>,
