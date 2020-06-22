@@ -11,6 +11,7 @@ import {
   InputLabel,
   FormControl,
   Button,
+  Menu,
 } from '@material-ui/core';
 
 import {
@@ -24,6 +25,7 @@ import {
 } from '../prefabs/index';
 
 import step from '../utils/step';
+import randomize from '../utils/randomize';
 
 const useStyles = makeStyles((theme) => ({
   gameBody: {
@@ -131,6 +133,10 @@ const Game = (props) => {
           return [...row];
         })
       );
+    //random settings
+    else if (prefab === 'randomS') setActive(randomize(30, gridSize));
+    else if (prefab === 'randomM') setActive(randomize(50, gridSize));
+    else if (prefab === 'randomL') setActive(randomize(70, gridSize));
     setGeneration(0);
   }, [prefab]);
 
@@ -199,6 +205,9 @@ const Game = (props) => {
               <MenuItem value='pulsar'>Pulsar</MenuItem>
               <MenuItem value='penta'>Pentadecathlon</MenuItem>
               <MenuItem value='space'>Spaceships</MenuItem>
+              <MenuItem value='randomS'>Random - Low Population</MenuItem>
+              <MenuItem value='randomM'>Random - Med Population</MenuItem>
+              <MenuItem value='randomL'>Random - High Population</MenuItem>
             </Select>
           </FormControl>
           <div className={classes.gameSetting}>
