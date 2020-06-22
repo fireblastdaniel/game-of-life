@@ -63,6 +63,7 @@ const Game = (props) => {
   const [prefab, setPrefab] = useState('');
   const [speed, setSpeed] = useState(1);
   const [playStatus, setPlayStatus] = useState('Start');
+  const [generation, setGeneration] = useState(0);
 
   //update function for grid component
   const update = (x, y) => {
@@ -130,6 +131,7 @@ const Game = (props) => {
           return [...row];
         })
       );
+    setGeneration(0);
   }, [prefab]);
 
   const handlePlayButton = (e) => {
@@ -146,6 +148,7 @@ const Game = (props) => {
 
   const getStep = () => {
     setActive(step(active));
+    setGeneration(generation + 1);
   };
 
   function useInterval(callback, delay) {
@@ -199,6 +202,7 @@ const Game = (props) => {
             </Select>
           </FormControl>
           <div className={classes.gameSetting}>
+            <p>Generation: {generation}</p>
             <p>Speed: {speed}x</p>
             <AddIcon onClick={speedUp} />
             <RemoveIcon onClick={speedDown} />
