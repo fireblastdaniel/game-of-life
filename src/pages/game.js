@@ -12,7 +12,6 @@ import {
   InputLabel,
   FormControl,
   Button,
-  Menu,
 } from '@material-ui/core';
 
 import {

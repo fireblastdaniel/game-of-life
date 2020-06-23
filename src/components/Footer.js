@@ -28,7 +28,7 @@ const Footer = (props) => {
           href='https://github.com/fireblastdaniel/game-of-life'
           className={classes.gitHubLink}
         >
-          <GitHubIcon fontSize='large' color='black' />
+          <GitHubIcon fontSize='large' />
         </a>
       </Container>
     </div>
