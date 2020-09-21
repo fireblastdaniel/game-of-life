@@ -5,6 +5,10 @@ import Grid from '../components/Grid';
 import { Container, makeStyles } from '@material-ui/core';
 import { loaf, toad, glider } from '../prefabs/examples';
 
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-178647961-1');
+
 const useStyles = makeStyles((theme) => ({
   examples: {
     display: 'flex',
