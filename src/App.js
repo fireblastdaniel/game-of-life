@@ -14,6 +14,7 @@ function initializeReactGA() {
 }
 
 function App() {
+  initializeReactGA();
   return (
     <>
       <Route exact path='/'>
