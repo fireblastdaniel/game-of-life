@@ -4,7 +4,7 @@ This application is a visual representation of John Conway's Game of Life algori
 
 # Deployment
 
-This project is currently deployed on github pages, and can be found [here](https://fireblastdaniel.github.io/game-of-life/). To update the published version to match your local build, run the command `npm run deploy` in the root directory.
+This project is currently deployed on github pages, and can be found [here](https://danielprue.github.io/game-of-life/). To update the published version to match your local build, run the command `npm run deploy` in the root directory.
 
 # Tasklist
 
