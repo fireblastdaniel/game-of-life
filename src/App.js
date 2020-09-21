@@ -8,13 +8,10 @@ import ReactGA from 'react-ga';
 
 import './App.css';
 
-function initializeReactGA() {
-  ReactGA.initialize('UA-178647961-1');
-  ReactGA.pageview('/');
-}
+ReactGA.initialize('UA-178647961-1');
+ReactGA.pageview('/');
 
 function App() {
-  initializeReactGA();
   return (
     <>
       <Route exact path='/'>
