@@ -8,6 +8,7 @@ import { loaf, toad, glider } from '../prefabs/examples';
 import ReactGA from 'react-ga';
 
 ReactGA.initialize('UA-178647961-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const useStyles = makeStyles((theme) => ({
   examples: {
