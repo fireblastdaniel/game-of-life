@@ -9,7 +9,7 @@ import ReactGA from 'react-ga';
 import './App.css';
 
 ReactGA.initialize('UA-178647961-1');
-ReactGA.pageview('/');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
   return (
